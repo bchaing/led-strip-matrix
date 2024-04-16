@@ -1,6 +1,6 @@
 from led_matrix import *
 from PIL import Image, ImageDraw, ImageFont
-from time import sleep
+from time import sleep 
 
 TEXT_COLOR = (255,255,255)
 BG_COLOR = (0,0,0)
@@ -17,9 +17,14 @@ draw.text((16, 0), text, font=font, fill=TEXT_COLOR)
 
 viewport_x = 0
 
+# Pre-render frames
+frames = []
 while viewport_x <= canvas.width:
-    matrix.fill(BG_COLOR)
     cropped_text = canvas.crop((viewport_x, 0, viewport_x + 16, 16))
-    matrix.image(cropped_text)
-    matrix.show()
+    frames.append(cropped_text)
     viewport_x += 1
+
+# Display frames
+for f in frames:
+    matrix.image(f)
+    matrix.show()
