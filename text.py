@@ -1,8 +1,8 @@
 from led_matrix import *
 from PIL import Image, ImageDraw, ImageFont
 
-TEXT_COLOR = (0,255,255)
-BG_COLOR = (0,0,255)
+TEXT_COLOR = (255,255,255)
+BG_COLOR = (0,0,0)
 
 matrix = LEDMatrix(16,16,board.D18)
 

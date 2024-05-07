@@ -36,12 +36,11 @@ class LEDMatrix:
             image = image.resize((self.num_rows, self.num_cols), resample=resample)
 
         image.convert("RGB")
-        pixel_data = list(image.getdata())
+        pixel_data = (image.getpixel((x, y)) for y in range(height) for x in range(width))
 
         for row in range(self.num_rows):
             for col in range(self.num_cols):
-                pixel_index = row * self.num_cols + col
-                pixel_color = pixel_data[pixel_index]
+                pixel_color = next(pixel_data)
                 self.set_pixel(row, col, pixel_color)
 
 def rand_color():
